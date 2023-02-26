@@ -5,7 +5,7 @@ let email = 'wdwq@gmail.com';
 let page;
 
 
-test.only('submittingForm', async ({page}) => {
+test('submittingForm', async ({page}) => {
   
   let nameReturn = page.locator('text=' + 'Name:Дима');
 
@@ -29,7 +29,7 @@ test.only('submittingForm', async ({page}) => {
     maxDiffPixels: 10});
 });
 
-test.only('Invalid email', async ({page}) => {
+test('Invalid email', async ({page}) => {
   
   let nameReturn = page.locator('text=' + 'Name:Дима');
 
@@ -44,13 +44,13 @@ test.only('Invalid email', async ({page}) => {
   await page.locator('#permanentAddress').fill('ыаыа');
   await page.getByRole('button', { name: 'Submit' }).click();
 
- /* const btn = page.locator("#userEmail")
+  /*const btn = page.locator("#userEmail")
   const color = await btn.evaluate((ele)=>{
     return window.getComputedStyle(ele).getPropertyValue("border")
 
   })
   console.log(color)
-  expect(color).toBe("px solid rgb(222, 143, 147)")*/
+  expect(color).toBe("1px solid rgb(222, 143, 147)")*/
 
   await expect(nameReturn).toHaveCount(0)
   await expect(page.getByText('Email:wdwq@gmail.com')).toHaveCount(0)
@@ -61,7 +61,7 @@ test.only('Invalid email', async ({page}) => {
     maxDiffPixels: 10});
 });
 
-test.only('Refresh the page After receiving the result', async ({page}) => {
+test('Refresh the page After receiving the result', async ({page}) => {
   
   let nameReturn = page.locator('text=' + 'Name:Дима');
 
@@ -83,7 +83,7 @@ test.only('Refresh the page After receiving the result', async ({page}) => {
   await expect(page.getByText('Permananet Address :ыаыа')).toHaveCount(0)
 });
 
-test.only('Updating the information in the submission form', async ({page}) => {
+test('Updating the information in the submission form', async ({page}) => {
   
   let nameReturn = page.locator('text=' + 'Name:Дима');
 
@@ -113,7 +113,7 @@ test.only('Updating the information in the submission form', async ({page}) => {
 
 
 
-test.only('submittingForm and click element', async ({page}) => {
+test('submittingForm and click element', async ({page}) => {
   
   let nameReturn = page.locator('text=' + 'Name:Дима');
 
