@@ -74,8 +74,10 @@ test('Смена города', async ({ page }) => {
 
   await mainPage.goto();
   await mainPage.clickCityConfirmation()
-  await mainPage.changingTheCity()
+  //await mainPage.getCity()
+  await mainPage.changingTheCity('Екатеринбург', 'Тюмень')
+  //await mainPage.changingTheCity()
 
-  await expect(mainPage.cityOfTyumen).toHaveCount(1)
-  await expect(mainPage.cityOfYekaterinburg).toHaveCount(0)
+  await expect(mainPage.getCity('Тюмень')).toHaveCount(1)
+  await expect(mainPage.getCity('Екатеринбург')).toHaveCount(0)
 });
