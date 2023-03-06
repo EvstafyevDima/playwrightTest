@@ -30,14 +30,12 @@ test('Поиск категорий на странице', async ({ page }) => 
   }
 });
 
-test.only('Переход на страницу о нас', async ({ page }) => {
+test('Переход на страницу о нас', async ({ page }) => {
   const mainPage = new MainPage(page);
   const aboutUs = new AboutUs(page);
 
   await mainPage.goto();
   await mainPage.clickLinkToTheAboutUsPage()
-
-  await page.waitForTimeout(2000)
 
   await expect(page).toHaveURL(config.usPage);
   await expect(aboutUs.aboutUsTitle).toBeVisible()
