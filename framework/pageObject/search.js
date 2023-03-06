@@ -5,8 +5,7 @@ class Search {
 
         this.page = page
         this.productSearchBar = page.getByPlaceholder('Искать в Жизньмарт') // Строка с поиском
-        this.theNameOfTheFoundProduct = page.getByText('Индейка с фитнеса') // Наименование товара "Индейка с фитнеса"
-        this.PhotoOfTheFoundProduct = page.getByRole('img', { name: 'Индейка с фитнеса' }).nth(2) // Фото найденного товара "Индейка с фитнеса"
+        this.PhotoOfTheFoundProduct = page.getByRole('img', { name: 'курица гриль' }).nth(1) // Фото найденного товара "Индейка с фитнеса"
 
         
 
@@ -17,17 +16,23 @@ class Search {
         await this.page.goto(config.search, { waitUntil: 'networkidle' });  // Страница поиска товара
       }
 
-      async searchProduct() //  Клик по кнопке добавления показателя
+      async searchProduct(fillProduct) //  Клик по кнопке добавления показателя
       {
         await this.productSearchBar.click();
-        await this.productSearchBar.fill('Индейка с фитнеса');
+        await this.productSearchBar.fill(fillProduct);
       }
 
-      async clickTheNameOfTheFoundProduct() //  Клик по товару "Индейка с фитнеса"
+      async clickTheNameOfTheFoundProduct(nameProduct) //  Клик по товару "Индейка с фитнеса"
       {
-        await this.theNameOfTheFoundProduct.click();
+        await this.page.waitForTimeout(1000)
+        return this.page.getByText(nameProduct).nth(1).click()
+        //await this.getCity(nameProduct).click();
       }
 
+      getCity (nameProduct) 
+      {
+        return this.page.getByText(nameProduct)
+     }
 }
 
 module.exports = {Search};
